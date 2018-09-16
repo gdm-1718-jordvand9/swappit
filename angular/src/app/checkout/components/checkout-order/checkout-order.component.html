@@ -1,0 +1,65 @@
+<div class="row" *ngIf="order">
+  <div class="col-12">
+    <h1>Payment for order #{{ order.id }}</h1>
+  </div>
+  <div class="col-12 list">
+    <div class="row list__header d-none d-md-flex">
+      <div class="col-3">
+        Festival
+      </div>
+      <div class="col-4">
+        Ticket
+      </div>
+      <div class="col-2">
+        Prijs
+      </div>
+      <div class="col-2">
+        Naam
+      </div>
+    </div>
+    <div class="row list__item" *ngFor="let ticket of order.tickets">
+      <div class="col-7 col-md-3 list__item--bold">
+        <p routerLink="/festivals/{{ ticket.ticket_type.festival.id }}">
+          {{ ticket.ticket_type.festival.name }}
+        </p>
+      </div>
+      <div class="col-7 col-md-4 list__item--bold">
+        <p>1x {{ ticket.ticket_type.name }} </p>
+      </div>
+      <div class="col-5 col-md-2 text-right text-md-left">
+        <p>€{{ ticket.price }}</p>
+      </div>
+      <div class="col-9 col-md-3">
+        <p>{{ ticket.user.name}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row checkout--total" *ngIf="order">
+  <div class="col-6 text-left">
+    Subtotal
+  </div>
+  <div class="col-6 text-right">
+    €{{ order.price }}
+  </div>
+  <div class="col-12 mt-3 ">
+    {{ order.cancel_timer }}
+  </div>
+</div>
+<div class="row" *ngIf="order">
+  <div class="col-12">
+    <button class="btn--primary" (click)="payOrder(order.id)">Pay →</button>
+    <button class="btn--primary" (click)="cancelOrder(order.id)">Cancel</button>
+  </div>
+</div>
+<div *ngIf="loading">
+  <div class="section section--hero">
+    <div class="container">
+      <div class="loading d-flex justify-content-center">
+        <div class="loading__line"></div>
+        <div class="loading__line"></div>
+        <div class="loading__line"></div>
+      </div>
+    </div>
+  </div>
+</div>

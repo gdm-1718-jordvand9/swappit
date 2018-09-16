@@ -1,0 +1,117 @@
+<div class="row">
+  <div class="col-12">
+    <h1 class="account__title">Add a ticket</h1>
+  </div>
+  <div class="col-12">
+    <form [formGroup]="ticketCreateForm" (ngSubmit)="onSubmit(ticketCreateForm.value)" class="row">
+      <div class="col-12 form__group">
+        <label for="festival" class="form__label">Festival</label>
+        <select formControlName="festival" class="form__input form__select form__input--border" (change)="onChange($event.target.value)">
+          <option value="" selected>Select a festival ...</option>
+          <option *ngFor="let festivalVM of festivalsVM" value="{{festivalVM.id}}">{{ festivalVM.name }}</option>
+        </select>
+        <div class="form__input__error">
+          <p *ngIf="!ticketCreateForm.controls['festival'].valid && ticketCreateForm.controls['festival'].touched">{{ festivalError }}</p>
+        </div>
+      </div>
+      <div class="col-12 form__group">
+        <label for="ticket_type" class="form__label">Ticket Type</label>
+        <select formControlName="ticket_type" class="form__input form__select form__input--border" (change)="getVMTicketTypeInfo($event.target.value)"
+          name="ticket_type">
+          <option *ngIf="!ticket_typesVM" value="" disabled>Select a festival first.</option>
+          <option *ngIf="ticket_typesVM" value="" selected>Select a ticket type.</option>
+          <option *ngFor="let ticket_typeVM of ticket_typesVM" value="{{ ticket_typeVM.id }}">{{ ticket_typeVM.name }}</option>
+        </select>
+        <div class="form__input__error">
+          <p *ngIf="!ticketCreateForm.controls['ticket_type'].valid && ticketCreateForm.controls['ticket_type'].touched">{{ ticket_typeError }}</p>
+        </div>
+        <div *ngIf="ticket_type_info" class="mt-2">
+          <p>This ticket has the following rules:</p>
+          <ul>
+            <li>The price must be between {{ ticket_type_info.price_min }} and {{ ticket_type_info.price_max }}</li>
+            <li>The start date must be within {{ ticket_type_info.sale_start_date }} and {{ ticket_type_info.sale_end_date }}</li>
+            <li>The end date cannot be later than {{ ticket_type_info.sale_end_date }}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-12 form__group">
+        <label for="start_date" class="form__label">Start sale</label>
+        <input type="date" class="form__input form__input--border" name="start_date" formControlName="start_date">
+        <div class="form__input__error">
+          <p *ngIf="!ticketCreateForm.controls['start_date'].valid && ticketCreateForm.controls['start_date'].touched">{{ start_dateError }}</p>
+          <p *ngIf="formSubmitted && submitErrors.start_date">{{ submitErrors.start_date }}</p>
+        </div>
+      </div>
+      <div class="col-12 form__group">
+        <label for="end_date" class="form__label">End sale</label>
+        <input type="date" class="form__input form__input--border" name="end_date" formControlName="end_date">
+        <div class="form__input__error">
+          <p *ngIf="!ticketCreateForm.controls['end_date'].valid && ticketCreateForm.controls['end_date'].touched">{{ end_dateError }}</p>
+          <p *ngIf="formSubmitted && submitErrors.end_date">{{ submitErrors.end_date }}</p>
+        </div>
+      </div>
+      <div class="col-12 form__group">
+        <label for="price" class="form__label">Price</label>
+        <input type="number" class="form__input form__input--border" name="price" formControlName="price">
+        <div class="form__input__error">
+          <p *ngIf="!ticketCreateForm.controls['price'].valid && ticketCreateForm.controls['price'].touched">{{ priceError }}</p>
+          <p *ngIf="formSubmitted && submitErrors.price">{{ submitErrors.price }}</p>
+        </div>
+      </div>
+      <div class="col-12 form__group">
+        <label for="code" class="form__label">Code</label>
+        <input type="text" class="form__input form__input--border" name="code" formControlName="code">
+        <div class="form__input__error">
+          <p *ngIf="!ticketCreateForm.controls['code'].valid && ticketCreateForm.controls['code'].touched">{{ codeError }}</p>
+          <p *ngIf="formSubmitted && submitErrors.code">{{ submitErrors.code }}</p>
+        </div>
+      </div>
+      <div class="col-12 form__group">
+        <label for="published" class="form__label">Publish</label>
+        <input type="checkbox" class="form__input form__input--border" name="published" formControlName="published">
+      </div>
+      <!-- <div class="col-12">
+        <label for="ticket_type" class="form__label">Ticket Type</label>
+        <select class="form__input form__select form__input--border" (change)="getVMTicketTypeInfo($event.target.value)" [(ngModel)]="ticket.ticket_type.id"
+          name="ticket_type">
+          <option *ngIf="!ticket_typesVM" value="">Select a festival first.</option>
+          <option *ngIf="ticket_typesVM" value="">Select a ticket type.</option>
+          <option *ngFor="let ticket_typeVM of ticket_typesVM" value="{{ ticket_typeVM.id }}">{{ ticket_typeVM.name }}</option>
+        </select>
+        <div *ngIf="ticket_type_info">
+          <p>This ticket has the following rules:</p>
+          <ul>
+            <li>The price must be between {{ ticket_type_info.price_min }} and {{ ticket_type_info.price_max }}</li>
+            <li>The start date must be within {{ ticket_type_info.sale_start_date }} and {{ ticket_type_info.sale_end_date }}</li>
+            <li>The end date cannot be later than {{ ticket_type_info.sale_end_date }}</li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="col-12">
+        <label for="start_date" class="form__label">Start sale</label>
+        <input type="date" class="form__input form__input--border" name="start_date" [(ngModel)]="ticket.start_date">
+      </div>
+      <div class="col-12">
+        <label for="end_date" class="form__label">End sale</label>
+        <input type="date" class="form__input form__input--border" name="end_date" [(ngModel)]="ticket.end_date">
+      </div>
+      <div class="col-12">
+        <label for="price" class="form__label">Price</label>
+        <input type="number" class="form__input form__input--border" name="price" [(ngModel)]="ticket.price">
+      </div>
+      <div class="col-12">
+        <label for="code" class="form__label">Code</label>
+        <input type="text" class="form__input form__input--border" name="code" [(ngModel)]="ticket.code">
+      </div>
+      <div class="col-12">
+        <label for="published" class="form__label">Publish</label>
+        <input type="checkbox" class="form__input form__input--border" name="published" [(ngModel)]="ticket.published">
+      </div> -->
+      <div class="col-12">
+        <button class="btn--primary" type="submit" [disabled]="!ticketCreateForm.valid">Add Ticket</button>
+      </div>
+    </form>
+  </div>
+
+</div>

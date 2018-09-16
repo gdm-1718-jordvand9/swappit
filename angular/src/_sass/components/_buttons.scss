@@ -1,0 +1,43 @@
+.btn--primary {
+  // Font
+  font-family: $headings-font-family;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: .2rem;
+  text-transform: uppercase;
+  // Size
+  padding: 1rem 3rem;
+  // Appearance
+  border: none;
+  background-color: $color-black;
+  color: $color-white;
+  cursor: pointer;
+  transition: all .25s ease;
+  &:hover {
+      background-color: #000;
+  }
+}
+.btn {
+  display: inline-block;
+  text-decoration: none;
+}
+.btn--secondary {
+  // Font
+  font-family: $headings-font-family;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: .2rem;
+  text-transform: uppercase;
+  // Size
+  padding: 1rem 3rem;
+  // Appearance
+  border: 3px solid $color-black;
+  background-color: transparent;
+  color: $color-black;
+  cursor: pointer;
+  transition: all .25s ease;
+  &:hover {
+      background-color: $color-black;
+      color: $color-white;
+  }
+}

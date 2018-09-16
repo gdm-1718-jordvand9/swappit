@@ -1,0 +1,56 @@
+@at-root {
+    @-ms-viewport { width: device-width; } // stylelint-disable-line at-rule-no-vendor-prefix
+}
+
+html {
+    box-sizing: border-box;
+    -ms-overflow-style: scrollbar;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
+/*
+Bootstrap
+*/
+$grid-columns: 12;
+$grid-gutter-width: 32px;
+$grid-breakpoints: (
+    // Extra small screen / phone
+    xs: 0,
+    // Small screen / phone
+    sm: 576px,
+    // Medium screen / tablet
+    md: 768px,
+    // Large screen / desktop
+    lg: 992px,
+    // Extra large screen / wide desktop
+    xl: 1200px
+);
+
+$container-max-widths: (
+    sm: 1140px,
+    md: 1140px,
+    lg: 1140px,
+    xl: 1140px
+);
+
+@import "~bootstrap/scss/mixins/breakpoints";
+@import "~bootstrap/scss/mixins/grid-framework";
+@import "~bootstrap/scss/mixins/grid";
+@import "~bootstrap/scss/mixins/text-truncate";
+@import "~bootstrap/scss/mixins/text-emphasis";
+@import "~bootstrap/scss/mixins/text-hide";
+@import "~bootstrap/scss/mixins/hover";
+
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/utilities/display";
+@import "~bootstrap/scss/utilities/flex";
+@import "~bootstrap/scss/utilities/text";
+@import "~bootstrap/scss/utilities/spacing";

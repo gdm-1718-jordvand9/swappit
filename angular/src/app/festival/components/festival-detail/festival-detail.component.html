@@ -1,0 +1,68 @@
+<div *ngIf="festival">
+  <div class="section section--hero section--yellow">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="festival__name">{{ festival.name }}</h1>
+          <p class="festival__date" *ngIf="festival.start_date === festival.end_date">{{ festival.start_date | date:'mediumDate' }}</p>
+          <p class="festival__date" *ngIf="festival.start_date !== festival.end_date">{{ festival.start_date | date:'mediumDate' }} - {{ festival.end_date | date:'mediumDate' }}</p>
+        </div>
+        <div class="col-12">
+          <p class="festival__description ">{{ festival.description }}</p>
+        </div>
+        <div class="col-12 d-flex festival__social social-buttons">
+          <a href="" class="social-buttons__item">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="" class="social-buttons__item">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="" class="social-buttons__item">
+            <i class="fab fa-snapchat-ghost"></i>
+          </a>
+          <a href="" class="social-buttons__item">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+        <div class="col-12 festival__counter">
+          <div class="row">
+            <div class="col-4 col-md-3">
+              <h1 class="festival__counter--value">{{ festival.tickets_available_count }}</h1>
+              <span class="festival__counter--label">Available</span>
+            </div>
+            <div class="col-4 col-md-3">
+              <h1 class="festival__counter--value">{{ festival.tickets_sold_count }}</h1>
+              <span class="festival__counter--label">Sold</span>
+            </div>
+            <div class="col-4 col-md-3">
+              <h1 class="festival__counter--value">{{ festival.tickets_wanted_count }}</h1>
+              <span class="festival__counter--label">Wanted</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="container">
+      <div class="row list" *ngFor="let ticket_type of festival.ticket_types">
+        <div class="col-12" style="margin-bottom:1rem; margin-top:2.5rem;">
+          <h2>{{ ticket_type.name }}</h2>
+          <p class="p-0">{{ ticket_type.description }}</p>
+          <button class="btn--primary" (click)="navigate(ticket_type.id)">{{ ticket_type.tickets_available_count }} {{ ticket_type.tickets_available_count == 1 ? 'ticket' : 'tickets'}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="loading">
+  <div class="section section--hero section--yellow">
+    <div class="container">
+      <div class="loading d-flex justify-content-center">
+        <div class="loading__line"></div>
+        <div class="loading__line"></div>
+        <div class="loading__line"></div>
+      </div>
+    </div>
+  </div>
+</div>

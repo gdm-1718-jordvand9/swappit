@@ -1,0 +1,27 @@
+.divider {
+  color: $color-black;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  &:after {
+    background-color: $color-black;
+    position: absolute;
+    width: 12em;
+    content: "";
+    top: 0;
+    left: 16px;
+    height: 12px;
+  }
+  h1 {
+    ///margin-top: 2rem;
+    display: block;
+    font-size: 2.5rem;
+  }
+  p {
+    font-size: 1.8rem;
+  }
+}
+.landing {
+  h1 {
+    font-size: 2.5rem;
+  }
+}

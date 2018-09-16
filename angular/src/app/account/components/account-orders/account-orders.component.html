@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-12">
+    <h1 class="account__title">Orders</h1>
+  </div>
+</div>
+<div *ngIf="orders.length">
+    <div class="list">
+        <div class="row list__header d-none d-md-flex">
+          <div class="col-1">
+            Id
+          </div>
+          <div class="col-4">
+            Status
+          </div>
+          <div class="col-3">
+            Prijs
+          </div>
+          <div class="col-3">
+            Placed at
+          </div>
+        </div>
+      
+        <div class="row list__item"    *ngFor="let order of orders" >
+          <div class="col-12 col-md-1 list__item--bold">
+            <p>#{{ order.id }}</p>
+          </div>
+          <div class="col-6 col-md-4 list__item--bold" [ngClass]="order.status == 'cancelled' ? 'list__item--disabled' : ''">
+            <p>{{ order.status }}</p>
+          </div>
+          <div class="col-6 col-md-3 text-right text-md-left" [ngClass]="order.status == 'cancelled' ? 'list__item--disabled' : ''">
+            <p>€{{ order.price }}</p>
+          </div>
+          <div class="col-11 col-md-3" [ngClass]="order.status == 'cancelled' ? 'list__item--disabled' : ''">
+            <p>{{ order.placed_at.date | date:'mediumDate' }}</p>
+          </div>
+          <div class="col-1 d-flex align-items-center justify-content-end justify-content-md-center list__item--add" (click)="openDialog( order.id )">
+            <i class="fas fa-info-circle"></i>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-12" *ngIf="pagination">
+            <ul class="paginate d-flex justify-content-end">
+              <li (click)="getAccountOrdersByPage(pagination.links.first)">
+                <i class="fas fa-step-backward"></i>
+              </li>
+              <li (click)="getAccountOrdersByPage(pagination.links.prev)" *ngIf="pagination.links.prev">
+                <i class="fas fa-backward"></i>
+              </li>
+              <li *ngFor="let pagination_number of pagination.meta" (click)="getAccountOrdersByPage(pagination.links.path + pagination.links.paramater_page + pagination_number)"
+                class="paginate__number" [ngClass]="pagination_number == pagination.links.current_page ? 'paginate--active' : ''">
+                {{ pagination_number }}</li>
+              <li (click)="getAccountOrdersByPage(pagination.links.next)" *ngIf="pagination.links.next">
+                <i class="fas fa-forward"></i>
+              </li>
+              <li (click)="getAccountOrdersByPage(pagination.links.last)">
+                <i class="fas fa-step-forward"></i>
+              </li>
+            </ul>
+          </div>
+        </div>
+</div>
+<div *ngIf="!orders.length">
+  <p>You haven't placed any orders yet.</p>
+</div>

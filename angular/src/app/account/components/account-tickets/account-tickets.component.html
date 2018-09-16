@@ -1,0 +1,94 @@
+<div class="row">
+  <div class="col-12">
+    <h1 class="account__title">All of your tickets.</h1>
+  </div>
+</div>
+<div class="list" *ngIf="tickets.length">
+  <div class="row list__header d-none d-md-flex">
+    <div class="col-1">
+      Id
+    </div>
+    <div class="col-5">
+      Date
+    </div>
+    <div class="col-3">
+      Price
+    </div>
+    <div class="col-1">
+      Sold
+    </div>
+    <div class="col-1">
+      Published
+    </div>
+    <div class="col-1">
+    </div>
+  </div>
+  <div class="row list__item" *ngFor="let ticket of tickets">
+    <div class="col-12 col-md-1 list__item--bold">
+      <p>#{{ ticket.id}}</p>
+      <!-- <p *ngFor="let ticket of order.tickets" class="list__item--stack">1x </p> -->
+    </div>
+    <div class="col-6 col-md-5 text-left text-md-left">
+      <p>
+        <strong>{{ ticket.ticket_type.festival.name }} - {{ ticket.ticket_type.name}}</strong>
+      </p>
+    </div>
+    <div class="col-6 col-md-3 text-right text-md-left">
+      <p>€{{ ticket.price }}</p>
+    </div>
+    <div class="col-11 col-md-1">
+      <p>
+        <i class="fas fa-check" *ngIf="ticket.sold"></i>
+      </p>
+    </div>
+    <div class="col-11 col-md-1">
+      <p>
+        <i class="fas fa-check" *ngIf="ticket.published"></i>
+      </p>
+    </div>
+    <div class="col-1 d-flex align-items-center justify-content-end justify-content-md-center list__item--add" (click)="openDialog( ticket.id )">
+      <i class="fas fa-info-circle"></i>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12" *ngIf="pagination">
+      <ul class="paginate d-flex justify-content-end">
+        <li (click)="getAccountTicketsByPage(pagination.links.first)" >
+          <i class="fas fa-step-backward"></i>
+        </li>
+        <li (click)="getAccountTicketsByPage(pagination.links.prev)" *ngIf="pagination.links.prev">
+          <i class="fas fa-backward"></i>
+        </li>
+        <li *ngFor="let pagination_number of pagination.meta" (click)="getAccountTicketsByPage(pagination.links.path + pagination_number)" class="paginate__number" [ngClass]="pagination_number == pagination.links.current_page ? 'paginate--active' : ''">
+        {{ pagination_number }}</li>
+        <li (click)="getAccountTicketsByPage(pagination.links.next)" *ngIf="pagination.links.next">
+          <i class="fas fa-forward"></i>
+        </li>
+        <li (click)="getAccountTicketsByPage(pagination.links.last)">
+          <i class="fas fa-step-forward"></i>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="row mb-3" *ngIf="!tickets.length">
+  <div class="col-12">
+    <p> You haven't added any tickets yet.</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <button class="btn--primary" (click)="navigate()">Add ticket</button>
+  </div>
+</div>
+<div *ngIf="loading">
+  <div class="section section--hero section--yellow">
+    <div class="container">
+      <div class="loading d-flex justify-content-center">
+        <div class="loading__line"></div>
+        <div class="loading__line"></div>
+        <div class="loading__line"></div>
+      </div>
+    </div>
+  </div>
+</div>

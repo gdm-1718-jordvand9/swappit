@@ -1,0 +1,83 @@
+<div class="sidenav">
+  <div class="sidenav__toolbar">
+    <button class="btn--sidenav" (click)="close()">
+      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        viewBox="0 0 200 200" style="enable-background:new 0 0 200 200;" xml:space="preserve">
+        <style type="text/css">
+          .st0 {
+            fill: none;
+            stroke: #FFFFFF;
+            stroke-width: 12;
+            stroke-miterlimit: 10;
+          }
+        </style>
+        <line class="st0" x1="4.3" y1="4.3" x2="195.6" y2="195.6" />
+        <line class="st0" x1="4.2" y1="195.7" x2="195.6" y2="4.3" />
+      </svg>
+    </button>
+  </div>
+  <div class="sidenav__cart">
+    <div class="container d-flex flex-column">
+      <div class="row sidenav__header">
+        <div class="col-12">
+          <h2>Shopping Cart</h2>
+        </div>
+      </div>
+      <div class="row" *ngIf="shoppingCart.items.length">
+        <div class="col-12">
+          <div class="row list__header d-none d-md-flex">
+            <div class="col-5">
+              Ticket
+            </div>
+            <div class="col-2">
+              Prijs
+            </div>
+            <div class="col-4">
+              Naam
+            </div>
+          </div>
+          <div class="row list__item" *ngFor="let item of shoppingCart.items">
+            <div class="col-7 col-md-5 list__item--bold">
+              <p>{{ item.ticket_type.festival.name }}
+                <br> 1x {{ item.ticket_type.name }}</p>
+            </div>
+            <div class="col-5 col-md-2 text-right text-md-left">
+              <p>€{{ item.price }}</p>
+            </div>
+            <div class="col-9 col-md-4">
+              <p>{{ item.user.name }}</p>
+            </div>
+            <div class="col-3 col-md-1 d-flex align-items-center justify-content-end justify-content-md-center list__item--add" (click)="removeItem(item)">
+              <i class="fas fa-cart-arrow-down"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="!shoppingCart.items.length">
+        <div class="col-12">
+          No items in your cart.
+        </div>
+      </div>
+      <div class="sidenav__cart-checkout row" *ngIf="shoppingCart.items.length">
+        <div class="col-12">
+          <div class="row sidenav__cart-checkout--totalprice">
+            <div class="col-6">
+              Subtotal
+            </div>
+            <div class="col-6">
+              €{{ shoppingCart.price_total }}
+            </div>
+          </div>
+        </div>
+        <div class="col-12 sidenav__checkout mb-5">
+          <button class="btn--primary" routerLink="checkout" (click)="checkout()">Check out →</button>
+          <button class="btn--primary" (click)="clearCart()">clear cart</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="sidenav__checkout">
+
+  </div>
+</div>

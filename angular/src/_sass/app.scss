@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+@import 
+    '~@angular/material/theming';
+
+@import 
+    'abstracts/variables',
+    'abstracts/fonts',
+    'abstracts/variables';
+
+@import 
+    'components/buttons',
+    'components/flash-message',
+    'components/list',
+    'components/sections',
+    'components/paginate',
+    'components/links',
+    'components/loading';
+
+@import 
+    'layout/header',
+    'layout/footer',
+    'layout/sidenav',
+    'layout/forms';
+
+@import 
+    'base/core',
+    'base/typography';
+
+@import 
+    'pages/home',
+    'pages/festival',
+    'pages/contact',
+    'pages/account',
+    'pages/auth',
+    'pages/checkout',
+    'pages/fourofour',
+    'pages/verify-email';
+
+@import 
+    'vendor/bootstrap-grid';
+
+// Define the default theme (same as the example above).
+$nmd-app-primary: mat-palette($mat-indigo);
+$nmd-app-accent:  mat-palette($mat-pink, A200, A100, A400);
+$nmd-app-theme:   mat-light-theme($nmd-app-primary, $nmd-app-accent);
+
+@include mat-core();
+@include angular-material-theme($nmd-app-theme);

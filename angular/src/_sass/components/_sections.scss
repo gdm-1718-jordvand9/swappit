@@ -1,0 +1,19 @@
+.section {
+  background-color: $color-white;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  /* h1,h2,h3,h4,h5,h6,p {
+    margin: 0;
+  } */
+  p {
+    font-size: 1.8rem;
+  }
+}
+
+.section--yellow {
+  background-color: $color-yellow !important;
+}
+.section--hero {
+  min-height: 77vh;
+  background-color: $color-white;
+}

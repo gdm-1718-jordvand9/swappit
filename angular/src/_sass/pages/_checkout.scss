@@ -1,0 +1,15 @@
+.checkout--total{
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-family: $headings-font-family;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.mat-horizontal-stepper-header{
+  pointer-events: none !important;
+}
+
+.mat-step-header .mat-step-icon {
+  background-color: $color-yellow !important;
+}

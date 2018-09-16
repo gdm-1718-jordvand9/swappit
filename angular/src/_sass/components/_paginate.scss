@@ -1,0 +1,21 @@
+.paginate {
+  font-family: $headings-font-family;
+  font-size: 1.2rem;
+  li{
+    display: inline-block;
+    padding: 0.5rem;
+    cursor: pointer;
+    &:hover {
+      background-color: rgba($color-black, $alpha: 0.1);
+    }
+  }
+  .paginate--active{
+    background-color: rgba($color-black, $alpha: 0.1);
+  }
+  .paginate__number{
+    -webkit-font-feature-settings: "lnum"; 
+    -moz-font-feature-settings: "lnum"; 
+    font-feature-settings: "lnum"; 
+    padding: 0.5rem 0.8rem;
+  }
+}

@@ -1,0 +1,25 @@
+<div class="section--hero">
+  <div class="section--yellow">
+    <div class="container">
+      <div class="row account__tabs text-center">
+        <!-- <div class="col-4 account__tab" (click)="tabIndex(1)" [ngClass]="{'account__tab--active' : tab == 1}">
+            <i class="fas fa-user-circle"></i>
+          </div> -->
+        <div class="col-4 account__tab" routerLink="/account/settings" routerLinkActive="active">
+          <i class="fas fa-user-circle"></i>
+        </div>
+        <div class="col-4 account__tab account__tab--border" routerLink="/account/tickets" routerLinkActive="active">
+          <i class="fas fa-ticket-alt"></i>
+        </div>
+        <div class="col-4 account__tab" routerLink="/account/orders" routerLinkActive="active">
+          <i class="fas fa-shipping-fast"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

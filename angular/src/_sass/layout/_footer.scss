@@ -1,0 +1,73 @@
+.footer_contact {
+    background-color: $color-yellow;
+    padding: 2.5rem 0;
+    .footer_contact_icons {
+        text-align: right;
+    }
+    .footer_contact_details {
+        text-align: right;
+        p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        .footer_contact_details_section {
+            margin-top: 1.5rem;
+        }
+    }
+}
+
+.footer_copyright {
+    text-align: left;
+    font-family: $headings-font-family;
+    background-color: $color-black;
+    p {
+        color: $color-white;
+        font-size: 0.8rem;
+    }
+}
+
+.social-buttons {
+    a:first-of-type {
+        margin-left: 0;
+    }
+}
+
+
+.social-buttons__item {
+    font-size: 1.5rem;
+    display: flex;
+    width: 3.2rem;
+    height: 3.2rem;
+    margin-left: .5rem;
+    color: $color-white;
+    background-color: $color-black;
+    border:3px solid $color-black;
+    border-radius: 50%;
+    transition: all .3s ease;
+    
+    &:hover {
+        //background-color: rgba($color-black, $alpha: 0.6);
+        //background-color: $color-yellow;
+        background-color: transparent;
+        color: $color-black;
+    }
+    svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        display: block;
+        margin: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo--footer {
+        margin-bottom: 2.5rem;
+        a {
+            span {
+                &:nth-of-type(2) {
+                    display: none;
+                }
+            }
+        }
+    }
+}

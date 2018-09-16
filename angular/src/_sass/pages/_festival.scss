@@ -1,0 +1,60 @@
+// Optimized
+.festival__name {
+  // Font
+  font-size: 3rem;
+  text-transform: uppercase;
+  font-weight: 800;
+  margin-bottom: 0;
+  // Size
+  // Appearance
+}
+.festival__date {
+  // Font
+  font-family: $headings-font-family;
+  font-size: 1.5rem;
+  font-weight: 600;
+  // Size
+  // Appearance
+  margin-top: 0;
+  margin-bottom: 3rem !important;
+}
+.festival__description {
+  font-size: 1.8rem;
+  margin-bottom: 3rem !important;
+}
+.festival__social {
+  margin-bottom: 3rem !important;
+}
+.festival__counter {
+  ///margin-bottom: 3rem !important;
+}
+.festival__counter--value {
+  font-size: 4rem;
+  margin-bottom: 0;
+}
+.festival__counter--label {
+  font-family: $headings-font-family;
+}
+// end optimized
+
+
+
+.mat-drawer-container {
+  color: inherit !important;
+}
+.section-top {
+  padding-top: 2.5rem;
+  &:after {
+    background-color: $color-black;
+    position: absolute;
+    width: 12em;
+    content: "";
+    top: 0;
+    left: 16px;
+    height: 12px;
+  }
+}
+
+.festivals-list {
+  margin-bottom: 5rem;
+}

@@ -1,0 +1,56 @@
+<div *ngIf="user">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="account__title">Account information</h1>
+    </div>
+    <div class="col-12">
+      <form (ngSubmit)="setAccount()" #setAccountForm [ngFormOptions]="{ updateOn: 'submit'}">
+        <div class="form__group">
+          <label for="name" class="form__label">Name</label>
+          <input type="text" class="form__input form__input--border" value="{{ user.name }}" id="name" [(ngModel)]="user.name" name="name"
+            #name="ngModel">
+        </div>
+        <div class="form__group">
+          <label for="email" class="form__label">Email</label>
+          <input type="text" class="form__input form__input--border" value="{{ user.email }}" id="email" [(ngModel)]="user.email" name="email"
+            #name="ngModel">
+        </div>
+        <button class="btn--primary" type="submit">Save changes</button>
+      </form>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-12">
+      <h1 class="account__title">Sign out</h1>
+    </div>
+    <div class="col-12">
+      <button class="btn--primary" (click)="signOut()">Sign out</button>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-12">
+      <h1 class="account__title">Deactivate account</h1>
+      <p>Deactivating your account will result in losing access to any information connected to your account.</p>
+    </div>
+    <div class="col-12">
+      <button class="btn--primary" (click)="disableAccount()">deactivate account</button>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-12">
+      <h1 class="account__title">Remove account</h1>
+      <p>Removing your account will result in completely removing any personal data including tickets, orders and other information.</p>
+    </div>
+    <div class="col-12">
+      <button class="btn--primary" (click)="deleteAccount()">remove account</button>
+    </div>
+  </div>
+</div>
+<div *ngIf="!user">
+  <div class="loading d-flex justify-content-center">
+    <div class="loading__line"></div>
+    <div class="loading__line"></div>
+    <div class="loading__line"></div>
+  </div>
+</div>
+

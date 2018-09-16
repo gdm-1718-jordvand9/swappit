@@ -1,0 +1,21 @@
+TODO BACKOFFICE //
+Redirect URL after in signup email 
+Seperate Verify table
+Check if order has been completed before setting status to cancelled.
+Disable cancelling an order if it status has been set to completed / payed. Do this in frontoffice as well.
+Disable completing an order if its status has been set to cancelled_at.
+Add wanted tickets (ticket_types). MTM ticket_type -> user. // Fix cascading deletes -> set null.
+Send email when ticket_type becomes available on users' wanted list.
+Create new error flashing message.
+Custom email design.
+Client overview.
+
+TODO FRONT //
+Loading indicators on all pages.
+Set service currently unavailable on server-side errors signup/ signin.
+Display add ticket form only when festival / tickettype VM have been loaded.
+Left align published checkbox ticket submit.
+Display loading indicator on account orders.
+
+TODO API //
+Make API token session based.

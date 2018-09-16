@@ -1,0 +1,43 @@
+.list {
+  font-family: $headings-font-family;
+  font-size: 1.2rem;
+  margin: 2.5rem 0;
+}
+.list--disabled{
+  opacity: 0.2;
+}
+.list--small {
+  font-family: $headings-font-family;
+}
+.list__header {
+  // Font
+  font-weight: 600;
+  // Size
+  // Appearance
+}
+.list__item {
+  // Font
+  margin: 0;
+  p {
+    font-size: 1.2rem !important;
+  }
+  // Size
+  // Appearance
+  border-bottom: 1px solid rgba($color-black, $alpha: 0.1);
+  &:hover {
+    background-color: rgba($color-black, $alpha: 0.1);
+  }
+}
+.list__item--disabled {
+  opacity: 0.2;
+}
+.list__item--bold {
+  font-weight: 600;
+}
+.list__item--add {
+  cursor: pointer;
+  transition: all .25s ease;
+  &:hover {
+    font-size: 1.4rem;
+  }
+}

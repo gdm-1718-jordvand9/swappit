@@ -1,0 +1,62 @@
+<div class="section section--hero section--yellow">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6 offset-md-6">
+        <h1 class="auth--title">Sign up.</h1>
+        <!-- <form (ngSubmit)="onSubmit()" #signUpForm [ngFormOptions]="{ updateOn: 'submit'}">
+          <label for="name" class="form__label">Name</label>
+          <input type="text" class="form__input form__input" required minlength="4" id="name" [(ngModel)]="user.name" name="name" #name="ngModel">
+          <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+            Name is required
+          </div>
+          <label for="email" class="form__label">Email</label>
+          <input type="text" class="form__input form__input" id="email" [(ngModel)]="user.email" name="email" #name="ngModel">
+          <label for="password" class="form__label">Password</label>
+          <input type="password" class="form__input form__input" id="password" [(ngModel)]="user.password" name="password" #name="ngModel">
+          <label for="password_confirm" class="form__label">Confirm password</label>
+          <input type="password" class="form__input form__input" id="password_confirm" [(ngModel)]="user.password_confirm" name="password_confirm"
+            #name="ngModel">
+          <button class="btn--primary" type="submit">Sign up</button>
+        </form> -->
+        <form [formGroup]="signUpForm" (ngSubmit)="onSubmit(signUpForm.value)">
+          <div class="form__group">
+            <label for="name" class="form__label">Name</label>
+            <input type="text" formControlName="name" class="form__input">
+            <div class="form__input__error">
+              <p *ngIf="!signUpForm.controls['name'].valid && signUpForm.controls['name'].touched">{{ nameError }}</p>
+            </div>
+          </div>
+          <div class="form__group">
+            <label for="email" class="form__label">Email</label>
+            <input type="email" formControlName="email" class="form__input">
+            <div class="form__input__error">
+              <p *ngIf="!signUpForm.controls['email'].valid && signUpForm.controls['email'].touched">{{ emailError }}</p>
+              <p *ngIf="formSubmitted && submitErrors.email">{{ submitErrors.email }}</p>
+            </div>
+          </div>
+          <div class="form__group">
+              <label for="password" class="form__label">Password</label>
+              <input type="password" formControlName="password" class="form__input">
+              <div class="form__input__error">
+                <p *ngIf="!signUpForm.controls['password'].valid && signUpForm.controls['password'].touched">{{ passwordError }}</p>
+                <p *ngIf="formSubmitted && submitErrors.password">{{ submitErrors.password }}</p>
+              </div>
+          </div>
+          <div class="form__group">
+              <label for="password_confirm" class="form__label">Confirm password</label>
+              <input type="password" formControlName="password_confirm" class="form__input">
+              <div class="form__input__error">
+                <p *ngIf="!signUpForm.controls['password_confirm'].valid && signUpForm.controls['password_confirm'].touched">{{ passwordConfirmError }}</p>
+              </div>
+          </div>
+          <div class="mb-2">
+              <a routerLink="/signin" class="link--primary">Already have an account? Sign in!</a>
+          </div>
+          
+
+          <button class="btn--primary" type="submit" [disabled]="!signUpForm.valid">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

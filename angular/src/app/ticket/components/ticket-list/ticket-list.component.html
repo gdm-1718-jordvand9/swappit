@@ -1,0 +1,150 @@
+<div class="section" *ngIf="tickets">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mb-5">
+        <button class="btn--secondary mb-2" (click)="sort('price','asc')"  *ngIf="priceSort ==='desc'">Price ↑</button>
+        <button class="btn--secondary mb-2" (click)="sort('price','desc')" *ngIf="priceSort ==='asc' || priceSort == null">Price ↓</button>
+        <button class="btn--secondary" (click)="sort('ticket_type_id','asc')" *ngIf="festivalSort ==='desc'">Ticket Type ↑</button>
+        <button class="btn--secondary" (click)="sort('ticket_type_id','desc')" *ngIf="festivalSort ==='asc' || festivalSort == null">Ticket Type ↓</button>
+      </div>
+      <div class="col-12">
+        <h1>Tickets</h1>
+      </div>
+      <div class="col-12 list" *ngIf="tickets">
+        <div class="row list__header d-none d-md-flex">
+          <div class="col-2">
+            Festival
+          </div>
+          <div class="col-4">
+            Ticket
+          </div>
+          <div class="col-2">
+            Prijs
+          </div>
+          <div class="col-2">
+            Naam
+          </div>
+        </div>
+        <div class="row list__item" *ngFor="let ticket of tickets">
+          <div class="col-7 col-md-2 list__item--bold">
+            <p routerLink="/festivals/{{ ticket.ticket_type.festival.slug }}" class="link link--primary">
+              {{ ticket.ticket_type.festival.name }}
+            </p>
+          </div>
+          <div class="col-7 col-md-4 list__item--bold">
+            <p routerLink="/ticket_types/{{ticket.ticket_type.id}}" class="link link--primary">1x {{ ticket.ticket_type.name }}</p>
+          </div>
+          <div class="col-5 col-md-2 text-right text-md-left">
+            <p>€{{ ticket.price }}</p>
+          </div>
+          <div class="col-9 col-md-3">
+            <p>{{ ticket.user.name}}</p>
+          </div>
+          <div class="col-3 col-md-1 d-flex align-items-center justify-content-end justify-content-md-center list__item--add" (click)="addToCart(ticket)">
+            <i class="fas fa-cart-plus"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-12" *ngIf="pagination">
+        <ul class="paginate d-flex justify-content-end">
+          <li (click)="getTicketsByPage(pagination.links.first)" >
+            <i class="fas fa-step-backward"></i>
+          </li>
+          <li (click)="getTicketsByPage(pagination.links.prev)" *ngIf="pagination.links.prev">
+            <i class="fas fa-backward"></i>
+          </li>
+          <li *ngFor="let pagination_number of pagination.meta" (click)="getTicketsByPage(pagination.links.path + pagination_number)" class="paginate__number" [ngClass]="pagination_number == pagination.links.current_page ? 'paginate--active' : ''">
+          {{ pagination_number }}</li>
+          <li (click)="getTicketsByPage(pagination.links.next)" *ngIf="pagination.links.next">
+            <i class="fas fa-forward"></i>
+          </li>
+          <li (click)="getTicketsByPage(pagination.links.last)">
+            <i class="fas fa-step-forward"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div class="section section--hero">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mb-5">
+        <button class="btn--secondary mb-2" (click)="sort('price','asc')"  *ngIf="priceSort ==='desc'">Price ↑</button>
+        <button class="btn--secondary mb-2" (click)="sort('price','desc')" *ngIf="priceSort ==='asc' || priceSort == null">Price ↓</button>
+        <button class="btn--secondary" (click)="sort('ticket_type_id','asc')" *ngIf="festivalSort ==='desc'">Ticket Type ↑</button>
+        <button class="btn--secondary" (click)="sort('ticket_type_id','desc')" *ngIf="festivalSort ==='asc' || festivalSort == null">Ticket Type ↓</button>
+      </div>
+      <div class="col-12">
+        <h1>Tickets</h1>
+      </div>
+      <div class="col-12 list" *ngIf="tickets">
+        <div class="row list__header d-none d-md-flex">
+          <div class="col-2">
+            Festival
+          </div>
+          <div class="col-4">
+            Ticket
+          </div>
+          <div class="col-2">
+            Prijs
+          </div>
+          <div class="col-2">
+            Naam
+          </div>
+        </div>
+        <div class="row list__item" *ngFor="let ticket of tickets">
+          <div class="col-7 col-md-2 list__item--bold">
+            <p routerLink="/festivals/{{ ticket.ticket_type.festival.slug }}" class="link link--primary">
+              {{ ticket.ticket_type.festival.name }}
+            </p>
+          </div>
+          <div class="col-7 col-md-4 list__item--bold">
+            <p routerLink="/ticket_types/{{ticket.ticket_type.id}}" class="link link--primary">1x {{ ticket.ticket_type.name }}</p>
+          </div>
+          <div class="col-5 col-md-2 text-right text-md-left">
+            <p>€{{ ticket.price }}</p>
+          </div>
+          <div class="col-9 col-md-3">
+            <p>{{ ticket.user.name}}</p>
+          </div>
+          <div class="col-3 col-md-1 d-flex align-items-center justify-content-end justify-content-md-center list__item--add" (click)="addToCart(ticket)">
+            <i class="fas fa-cart-plus"></i>
+          </div>
+        </div>
+      </div>
+       <div class="col-12" *ngIf="!tickets">
+        <p>No tickets available.</p>
+      </div>
+      <div class="col-12" *ngIf="pagination">
+        <ul class="paginate d-flex justify-content-end">
+          <li (click)="getTicketsByPage(pagination.links.first)" >
+            <i class="fas fa-step-backward"></i>
+          </li>
+          <li (click)="getTicketsByPage(pagination.links.prev)" *ngIf="pagination.links.prev">
+            <i class="fas fa-backward"></i>
+          </li>
+          <li *ngFor="let pagination_number of pagination.meta" (click)="getTicketsByPage(pagination.links.path + pagination_number)" class="paginate__number" [ngClass]="pagination_number == pagination.links.current_page ? 'paginate--active' : ''">
+          {{ pagination_number }}</li>
+          <li (click)="getTicketsByPage(pagination.links.next)" *ngIf="pagination.links.next">
+            <i class="fas fa-forward"></i>
+          </li>
+          <li (click)="getTicketsByPage(pagination.links.last)">
+            <i class="fas fa-step-forward"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div *ngIf="loading">
+  <div class="section section--hero">
+    <div class="container">
+      <div class="loading d-flex justify-content-center">
+        <div class="loading__line"></div>
+        <div class="loading__line"></div>
+        <div class="loading__line"></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+.account__tabs {
+  font-size: 2rem;
+  padding: 1rem;
+  .active {
+    color: rgba($color-black, $alpha: 1.0);
+  }
+}
+.account__tab {
+  color: rgba($color-black, $alpha: 0.3);
+  cursor: pointer;
+  transition: all .25s ease;
+  &:hover {
+    color: rgba($color-black, $alpha: 1.0);
+  }
+}
+.account__tab--border {
+  border-left: 2px solid $color-black;
+  border-right: 2px solid $color-black;
+}
+.account__tab--active {
+}
+.account__title {
+  font-size: 2.5rem;
+  //margin-bottom: 2.5rem !important;
+}

@@ -1,0 +1,28 @@
+<div class="section section--hero section--yellow" *ngIf="festivals">
+  <div class="container">
+    <div class="row festivals-list" *ngFor="let festival of festivals">
+      <div class="col-12 divider">
+        <h1 class="festival__name">{{ festival.name }}</h1>
+        <p class="festival__date mb-0" *ngIf="festival.start_date === festival.end_date">{{ festival.start_date | date:'mediumDate' }}</p>
+        <p class="festival__date mb-0" *ngIf="festival.start_date !== festival.end_date">{{ festival.start_date | date:'mediumDate' }} - {{ festival.end_date | date:'mediumDate' }}</p>
+      </div>
+      <div class="col-12">
+        <p class="festival__description mb-3">{{ festival.description }}</p>
+      </div>
+      <div class="col-12">
+        <a routerLink="/festivals/{{festival.slug}}" class="btn btn--primary">Tickets →</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="loading">
+  <div class="section section--hero section--yellow">
+    <div class="container">
+      <div class="loading d-flex justify-content-center">
+        <div class="loading__line"></div>
+        <div class="loading__line"></div>
+        <div class="loading__line"></div>
+      </div>
+    </div>
+  </div>
+</div>

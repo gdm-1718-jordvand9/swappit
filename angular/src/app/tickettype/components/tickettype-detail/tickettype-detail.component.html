@@ -1,0 +1,103 @@
+<div *ngIf="tickettype">
+    <div class="section section--hero section--yellow">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h1 class="festival__name">{{ festival.name }} - {{ tickettype.name }}</h1>
+            <p class="festival__date" *ngIf="festival.start_date === festival.end_date">{{ festival.start_date | date:'mediumDate' }}</p>
+          <p class="festival__date" *ngIf="festival.start_date !== festival.end_date">{{ festival.start_date | date:'mediumDate' }} - {{ festival.end_date | date:'mediumDate' }}</p>
+          </div>
+          <div class="col-12">
+            <p class="festival__description ">{{ tickettype.description }}</p>
+          </div>
+          <div class="col-12 d-flex festival__social social-buttons">
+            <a href="" class="social-buttons__item">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="" class="social-buttons__item">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="" class="social-buttons__item">
+              <i class="fab fa-snapchat-ghost"></i>
+            </a>
+            <a href="" class="social-buttons__item">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+          <div class="col-12 festival__counter">
+            <div class="row">
+              <div class="col-4 col-md-3">
+                <h1 class="festival__counter--value">{{ tickettype.tickets_available_count }}</h1>
+                <span class="festival__counter--label">Available</span>
+              </div>
+              <div class="col-4 col-md-3">
+                <h1 class="festival__counter--value">{{ tickettype.tickets_sold_count }}</h1>
+                <span class="festival__counter--label">Sold</span>
+              </div>
+              <div class="col-4 col-md-3">
+                <h1 class="festival__counter--value">{{ tickettype.tickets_wanted_count}}</h1>
+                <span class="festival__counter--label">Wanted</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row list">
+            <div class="col-12" *ngIf="tickets.length">
+                <div class="row list__header d-none d-md-flex">
+                  <div class="col-2">
+                    Festival
+                  </div>
+                  <div class="col-4">
+                    Ticket
+                  </div>
+                  <div class="col-2">
+                    Prijs
+                  </div>
+                  <div class="col-2">
+                    Naam
+                  </div>
+                </div>
+                <div class="row list__item" *ngFor="let ticket of tickets">
+                  <div class="col-7 col-md-2 list__item--bold">
+                    <p >
+                      {{ festival.name }}
+                    </p>
+                  </div>
+                  <div class="col-7 col-md-4 list__item--bold">
+                    <p>1x {{ tickettype.name }} </p>
+                  </div>
+                  <div class="col-5 col-md-2 text-right text-md-left">
+                    <p>€{{ ticket.price }}</p>
+                  </div>
+                  <div class="col-9 col-md-3">
+                    <p>{{ ticket.user.name}}</p>
+                  </div>
+                  <div class="col-3 col-md-1 d-flex align-items-center justify-content-end justify-content-md-center list__item--add" (click)="addToCart(ticket)">
+                    <i class="fas fa-cart-plus"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12" *ngIf="!tickets.length">
+                <p>No tickets available.</p>
+              </div>
+        </div>
+        <button class="btn--secondary" (click)="setTicketTypeWant()">I want this ticket</button>
+        <p *ngIf="tickettype_wanted_message" class="flash__message">{{ tickettype_wanted_message }}</p>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="loading">
+    <div class="section section--hero section--yellow">
+      <div class="container">
+        <div class="loading d-flex justify-content-center">
+          <div class="loading__line"></div>
+          <div class="loading__line"></div>
+          <div class="loading__line"></div>
+        </div>
+      </div>
+    </div>
+  </div>

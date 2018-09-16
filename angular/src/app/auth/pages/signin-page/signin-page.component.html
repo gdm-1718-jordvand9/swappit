@@ -1,0 +1,32 @@
+<div class="section section--hero section--yellow">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6 offset-md-6">
+        <h1 class="auth--title">Sign in.</h1>
+        <form [formGroup]="signInForm" (ngSubmit)="onSubmit(signInForm.value)">
+          <div class="form__group">
+            <label for="email" class="form__label">Email</label>
+            <input type="email" formControlName="email" class="form__input">
+            <div class="form__input__error">
+              <p *ngIf="!signInForm.controls['email'].valid && signInForm.controls['email'].touched">{{ emailError }}</p>
+              <p *ngIf="formSubmitted && submitErrors.email">{{ submitErrors.email }}</p>
+            </div>
+          </div>
+          <div class="form__group">
+            <label for="password" class="form__label">Password</label>
+            <input type="password" formControlName="password" class="form__input">
+            <div class="form__input__error">
+              <p *ngIf="!signInForm.controls['password'].valid && signInForm.controls['password'].touched">{{ passwordError }}</p>
+              <p *ngIf="formSubmitted && submitErrors.password">{{ submitErrors.password }}</p>
+            </div>
+          </div>
+          <div class="mb-2">
+              <a routerLink="/signup" class="link--primary">Don't have an account yet ? Sign up!</a>
+          </div>
+          <button class="btn--primary" type="submit" [disabled]="!signInForm.valid">Sign in</button>
+          <p *ngIf="error" class="mt-2">{{ error }}</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

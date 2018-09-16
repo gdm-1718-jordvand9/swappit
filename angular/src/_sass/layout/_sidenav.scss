@@ -1,0 +1,102 @@
+.offcanvas-right {
+    max-width: 80vw;
+    width: 600px;
+    position: fixed !important;
+    top: 0;
+    right: 0;
+}
+
+.offcanvas-left {
+    max-width: 80vw;
+    width: 600px;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+}
+
+.sidenav {
+    font-family: $headings-font-family;
+    height: 100vh;
+    margin: 0 1rem;
+    max-height: 100vh;
+}
+
+.sidenav__toolbar {
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+    text-align: right;
+}
+
+.sidenav__header {
+    text-align: left;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+}
+
+.sidenav__cart-checkout--totalprice {
+    padding-top: 4rem;
+    padding-bottom: 1rem;
+    div:nth-child(1) {
+        text-transform: uppercase;
+    }
+    div:nth-child(2) {
+        text-align: right;
+    }
+}
+
+// Button file
+button:focus {
+    outline: 0;
+}
+
+.btn--sidenav {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    color: $color-white;
+    border-radius: 50px;
+    border: 0;
+    background-color: rgba($color-black, 0.4);
+    padding: 0.5rem;
+    transition: all .25s ease;
+    &:hover {
+        background-color: rgba($color-black, 1);
+    }
+}
+
+.sidenav__menu {
+    .nav {
+      list-style: none;
+      padding-left: 0;
+      li {
+        margin-top:1rem;
+        margin-bottom: 1rem;
+      }
+        a {
+            text-decoration: none;
+            color: $color-black;
+            font-size: 2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            position: relative;
+            &:before {
+              height: 5px;
+              background-color: transparent;
+              content: "";
+              position: absolute;
+              bottom: -5px;
+              left: 0;
+              width: 100%;
+              transition: all .15s ease-out;
+            }
+            &:hover:before {
+                background-color: $color-black;
+            }
+        }
+        .active {
+          &:before{
+            background-color: $color-black;
+          }
+        }
+    }
+}

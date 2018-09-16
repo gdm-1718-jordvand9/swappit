@@ -1,0 +1,89 @@
+<div class="row mb-5">
+  <div class="col-12">
+    <h1>Confirm your tickets.</h1>
+  </div>
+</div>
+<div class="row" *ngIf="tickets_available.length">
+  <div class="col-12">
+    <h2>Nice, these tickets are still available.</h2>
+  </div>
+  <div class="col-12 list">
+    <div class="row list__header d-none d-md-flex">
+      <div class="col-3">
+        Festival
+      </div>
+      <div class="col-4">
+        Ticket
+      </div>
+      <div class="col-2">
+        Prijs
+      </div>
+      <div class="col-2">
+        Naam
+      </div>
+    </div>
+    <div class="row list__item" *ngFor="let ticket of tickets_available">
+      <div class="col-7 col-md-3 list__item--bold">
+        <p>
+          {{ ticket.ticket_type.festival.name }}
+        </p>
+      </div>
+      <div class="col-7 col-md-4 list__item--bold">
+        <p>1x {{ ticket.ticket_type.name }} </p>
+      </div>
+      <div class="col-5 col-md-2 text-right text-md-left">
+        <p>€{{ ticket.price }}</p>
+      </div>
+      <div class="col-9 col-md-3">
+        <p>{{ ticket.user.name}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" *ngIf="tickets_sold.length">
+  <div class="col-12">
+    <h2>Oh snap, these tickets have been sold.</h2>
+  </div>
+  <div class="col-12 list list--disabled">
+    <div class="row list__header d-none d-md-flex">
+      <div class="col-3">
+        Festival
+      </div>
+      <div class="col-4">
+        Ticket
+      </div>
+      <div class="col-2">
+        Prijs
+      </div>
+      <div class="col-2">
+        Naam
+      </div>
+    </div>
+    <div class="row list__item" *ngFor="let ticket of tickets_sold">
+      <div class="col-7 col-md-3 list__item--bold">
+        <p>
+          {{ ticket.ticket_type.festival.name }}
+        </p>
+      </div>
+      <div class="col-7 col-md-4 list__item--bold">
+        <p>1x {{ ticket.ticket_type.name }} </p>
+      </div>
+      <div class="col-5 col-md-2 text-right text-md-left">
+        <p>€{{ ticket.price }}</p>
+      </div>
+      <div class="col-9 col-md-3">
+        <p>{{ ticket.user.name}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" *ngIf="tickets_available.length">
+  <div class="col-12">
+    <button class="btn--primary" (click)="createOrder()">proceed →</button>
+  </div>
+</div>
+<div class="row" *ngIf="!tickets_available.length && !tickets_sold.length">
+  <div class="col-12">
+    <p>No items in your cart.</p>
+  </div>
+</div>

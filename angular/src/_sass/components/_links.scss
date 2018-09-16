@@ -1,0 +1,8 @@
+.link--primary {
+  color: $color-black;
+}
+.link {
+  &:hover {
+    text-decoration: underline;
+  }
+}

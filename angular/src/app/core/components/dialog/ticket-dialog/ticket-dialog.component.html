@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-12 d-flex justify-content-end">
+      <button _ngcontent-c3="" class="btn--sidenav" (click)="closeDialog()">
+        <svg _ngcontent-c3="" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" id="Layer_1" style="enable-background:new 0 0 200 200;"
+          version="1.1" viewBox="0 0 200 200" x="0px" xmlns="http://www.w3.org/2000/svg" y="0px">
+          <style _ngcontent-c3="" type="text/css">
+            .st0 {
+              fill: none;
+              stroke: #FFFFFF;
+              stroke-width: 12;
+              stroke-miterlimit: 10;
+            }
+          </style>
+          <line _ngcontent-c3="" class="st0" x1="4.3" x2="195.6" y1="4.3" y2="195.6"></line>
+          <line _ngcontent-c3="" class="st0" x1="4.2" x2="195.6" y1="195.7" y2="4.3"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+<h1>Ticket #{{ data.id }}</h1>
+<mat-dialog-content>
+  <h2>€{{ data.price }}</h2>
+  <h3><strong>{{ data.ticket_type.festival.name }} - {{ data.ticket_type.name}}</strong></h3>
+  <p>{{ data.ticket_type.description }}</p>
+  <h4> Sold: <i class="fas fa-check" *ngIf="data.sold"></i><i class="fas fa-times" *ngIf="!data.sold"></i></h4>
+  <h4> Published: <i class="fas fa-check" *ngIf="data.published"></i><i class="fas fa-times" *ngIf="!data.published"></i></h4>
+  <button (click)="setTicketTogglePublished(data.id)" class="btn--primary"> {{ data.published ? 'Unpublish' : 'Publish'}}</button>
+  <button class="btn--primary" (click)="setTicketBump(data.id)">Bump</button>
+  <div class="col-12">
+    <p *ngIf="error">{{ error }}</p>
+  </div>
+</mat-dialog-content>
